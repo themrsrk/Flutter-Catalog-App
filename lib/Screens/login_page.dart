@@ -72,18 +72,37 @@ class _LoginState extends State<Login> {
             height: 20.0 ,
           ),
 
-            Container(
-              height: 40,
-              width: 80,
-              color: Colors.deepPurple,
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
-                ),
-                ),
+            InkWell(
+              onTap:  () async{
+                setState(() {
+                  changeButton = true;
+                });
+                await Future.delayed(Duration(seconds: 1));
+                Navigator.pushNamed(context, MyRoutes.home);
+              },
+              splashColor: Colors.white,
+              
+              child: AnimatedContainer(
+              
+                duration: Duration(seconds: 1),
+                height: 40,
+                width: changeButton?40:110,
+                alignment: Alignment.center,
+                
+                // color: Colors.deepPurple,
+                child: changeButton? Icon(Icons.done, color: Colors.white,): Text(
+                  "Login",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(changeButton?50:8),
+                  ),
+              ),
             ),
           // ElevatedButton(
           //   onPressed: () {
